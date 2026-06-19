@@ -4,7 +4,7 @@
 #include <fstream>
 using namespace std;
 
-string fileName = "Clients Records";
+string fileName = "clientsRecords.txt";
 
 struct stClientData
 {
