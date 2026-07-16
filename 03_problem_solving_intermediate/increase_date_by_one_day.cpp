@@ -29,21 +29,22 @@ int readYear()
 
     return year;
 }
-int readAddedDays()
-{
-    int AddedDays;
-
-    cout << "How many days do you want to add? ";
-    cin >> AddedDays;
-
-    return AddedDays;
-}
 struct stDate
 {
     int day = 0;
     int month = 0;
     int year = 0;
 };
+stDate readDate()
+{
+    stDate date;
+
+    date.day = readDay();
+    date.month = readMonth();
+    date.year = readYear();
+
+    return date;
+}
 bool checkLeapYearOrNot(int year)
 {
     if (year % 400 == 0)
@@ -93,67 +94,42 @@ int numberOfDaysInYear(int year)
 {
     return (checkLeapYearOrNot(year) ? 366 : 365);
 }
-int getDayOrderInYear(int day, int month, int year)
+bool isLastDayInMonth(stDate date)
 {
-    int daysInYear = numberOfDaysInYear(year);
-    int orderOfTheDay = 0;
-
-    for (int i = 1; i < month; i++)
-    {
-        orderOfTheDay += numberOfDaysInMonth(year, i);
-    }
-
-    orderOfTheDay += day;
-
-    return orderOfTheDay;
+    return date.day == numberOfDaysInMonth(date.year, date.month);
 }
-stDate addDaysToTheDate(int addedDays, stDate date)
+bool isLastMonthInYear(stDate date)
 {
-    int RemainingDays = addedDays + getDayOrderInYear(date.day, date.month, date.year);
-    short MonthDays = 0;
-
-    date.month = 1;
-
-    while (true)
+    return date.month == 12;
+}
+stDate addADayToDate(stDate date)
+{
+    if (isLastDayInMonth(date))
     {
-        MonthDays = numberOfDaysInMonth(date.year, date.month);
-
-        if (RemainingDays > MonthDays)
+        if (isLastMonthInYear(date))
         {
-            RemainingDays -= MonthDays;
-            date.month++;
-
-            if (date.month > 12)
-            {
-                date.month = 1;
-                date.year++;
-            }
+            date.year++;
+            date.month = 1;
+            date.day = 1;
         }
         else
         {
-            date.day = RemainingDays;
-            break;
+            date.month++;
+            date.day = 1;
         }
     }
-
-    return date;
-}
-stDate readDate()
-{
-    stDate date;
-
-    date.day = readDay();
-    date.month = readMonth();
-    date.year = readYear();
+    else
+    {
+        date.day++;
+    }
 
     return date;
 }
 int main()
 {
     stDate date = readDate();
-    int addedDays = readAddedDays();
 
-    date = addDaysToTheDate(addedDays, date);
+    date = addADayToDate(date);
 
     cout << date.day << "/" << date.month << "/" << date.year << endl;
 
