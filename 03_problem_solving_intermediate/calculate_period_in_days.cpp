@@ -28,20 +28,22 @@ int readYear()
 
     return year;
 }
-short readVacationDays()
+enum enCompare
 {
-    short vacationDays;
-
-    cout << "\nEnter vacation days: ";
-    cin >> vacationDays;
-
-    return vacationDays;
-}
+    before = -1,
+    equal = 0,
+    after = 1
+};
 struct stDate
 {
     int day = 0;
     int month = 0;
     int year = 0;
+};
+struct stDatePeriod
+{
+    stDate startDate;
+    stDate endDate;
 };
 stDate readDate()
 {
@@ -52,6 +54,12 @@ stDate readDate()
     date.year = readYear();
 
     return date;
+}
+bool isDate1BeforeDate2(stDate date1, stDate date2)
+{
+    return (date1.year < date2.year) ? true : (date1.year == date2.year) ? (date1.month < date2.month) ? true : (date1.month == date2.month) ? (date1.day < date2.day)
+                                                                                                                                             : false
+                                                                         : false;
 }
 bool checkLeapYearOrNot(int year)
 {
@@ -129,73 +137,37 @@ stDate addADayToDate(stDate date)
 
     return date;
 }
-short getOrderOfDay(stDate date)
+int calculatePeriodDays(stDatePeriod period, bool includingEndDay = false)
 {
-    int a = (14 - date.month) / 12;
-    int y = date.year - a;
-    int m = date.month + (12 * a) - 2;
-    int d = (date.day + y + (y / 4) - (y / 100) + (y / 400) + ((31 * m) / 12)) % 7;
+    int counter = 0;
 
-    return d;
-}
-string getDayName(stDate date)
-{
-    short dayNumber = getOrderOfDay(date);
-
-    string daysNames[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-
-    return daysNames[dayNumber];
-}
-bool isBusinessDay(stDate date)
-{
-    short dayOrder = getOrderOfDay(date);
-
-    if (dayOrder == 6 || dayOrder == 5)
+    while (isDate1BeforeDate2(period.startDate, period.endDate))
     {
-        return false;
-    }
-    else
-    {
-        return true;
-    }
-}
-bool isWeekEnd(stDate date)
-{
-    short dayOrder = getOrderOfDay(date);
-
-    if (dayOrder == 6 || dayOrder == 5)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-stDate returnDateFromVacation(stDate date, short vacationDays)
-{
-    for (int i = 0; i < vacationDays; i++)
-    {
-        if (isWeekEnd(date))
-        {
-            vacationDays++;
-        }
-
-        date = addADayToDate(date);
+        period.startDate = addADayToDate(period.startDate);
+        counter++;
     }
 
-    return date;
+    if (includingEndDay)
+    {
+        counter++;
+    }
+
+    return counter;
 }
+
 int main()
 {
-    cout << "Vacation starts:";
-    stDate date1 = readDate();
 
-    short vacationDays = readVacationDays();
+    cout << "Enter period\n";
+    cout << "Enter start date\n";
+    stDatePeriod period;
+    period.startDate = readDate();
 
-    stDate returnDate = returnDateFromVacation(date1, vacationDays);
+    cout << "\nEnter end date\n";
+    period.endDate = readDate();
 
-    cout << "\n\nReturn Date: " << returnDate.day << "/" << returnDate.month << "/" << returnDate.year << endl;
+    cout << "\nPeriod length is: " << calculatePeriodDays(period) << endl;
+    cout << "Period length (including end day) is: " << calculatePeriodDays(period, true) << endl;
 
     return 0;
 }
