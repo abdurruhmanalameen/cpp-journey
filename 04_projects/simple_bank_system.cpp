@@ -401,7 +401,7 @@ void addClients(vector<stClientInfo> &vClients)
     system("clear");
     cout << "====================================================" << endl
          << "                  Add new client screen \n"
-         << "====================================================\n\n";
+         << "====================================================\n";
     char newClient = 'Y';
 
     do
@@ -422,7 +422,7 @@ void addUsers(vector<stUserInfo> &vUser)
     system("clear");
     cout << "====================================================" << endl
          << "                  Add new user screen \n"
-         << "====================================================\n\n";
+         << "====================================================\n";
     char newUser = 'Y';
 
     do
@@ -636,7 +636,7 @@ void updateRecordFromFile()
     system("clear");
     cout << "====================================================" << endl
          << "              Update client data screen\n"
-         << "====================================================\n\n";
+         << "====================================================\n";
     string accountNumber = readAccountNumber("Enter the account number to Update: ");
     vector<stClientInfo> vClients = loadClientsDataFromFile(fileName);
     stClientInfo client;
@@ -671,7 +671,7 @@ void updateUserFromFile()
     system("clear");
     cout << "====================================================" << endl
          << "              Update user data screen\n"
-         << "====================================================\n\n";
+         << "====================================================\n";
     string username = readUsername("Enter the username to Update: ");
     vector<stUserInfo> vUsers = loadUsersDataFromFile(usersFileName);
     stUserInfo user;
@@ -706,7 +706,7 @@ void deleteRecordFromFile()
     system("clear");
     cout << "====================================================" << endl
          << "                Delete client screen\n"
-         << "====================================================\n\n";
+         << "====================================================\n";
     string accountNumber = readAccountNumber("Enter the account number to delete: ");
     vector<stClientInfo> vClients = loadClientsDataFromFile(fileName);
     stClientInfo client;
@@ -736,7 +736,7 @@ void deleteUserFromFile()
     system("clear");
     cout << "====================================================" << endl
          << "                Delete user screen\n"
-         << "====================================================\n\n";
+         << "====================================================\n";
     string username = readAccountNumber("Enter username to delete: ");
     vector<stUserInfo> vUsers = loadUsersDataFromFile(usersFileName);
     stUserInfo user;
@@ -770,7 +770,7 @@ void showMainScreen()
     system("clear");
     cout << "====================================================" << endl
          << "                  Main Menu Screen\n"
-         << "====================================================\n\n"
+         << "====================================================\n"
          << "              [1] Show Client List" << endl
          << "              [2] Add New Client" << endl
          << "              [3] Delete Client" << endl
@@ -787,7 +787,7 @@ void showTransactionScreen()
     system("clear");
     cout << "====================================================" << endl
          << "              transaction Menu Screen\n"
-         << "====================================================\n\n"
+         << "====================================================\n"
          << "              [1] Deposit" << endl
          << "              [2] Withdraw" << endl
          << "              [3] Total balances" << endl
@@ -800,7 +800,7 @@ void showManageUsersScreen()
     system("clear");
     cout << "====================================================" << endl
          << "              Manage Users Screen\n"
-         << "====================================================\n\n"
+         << "====================================================\n"
          << "              [1] List users" << endl
          << "              [2] Add a new user" << endl
          << "              [3] Delete user" << endl
@@ -815,7 +815,7 @@ void showEndScreen()
     system("clear");
     cout << "====================================================" << endl
          << "                  Program Ends :-)\n"
-         << "====================================================\n\n";
+         << "====================================================\n";
 }
 void deposit(vector<stClientInfo> &vClients)
 {
@@ -827,7 +827,7 @@ void deposit(vector<stClientInfo> &vClients)
     system("clear");
     cout << "====================================================" << endl
          << "                  Deposit screen \n"
-         << "====================================================\n\n"
+         << "====================================================\n"
          << "Please enter accountNumber? ";
     cin >> accountNumber;
 
@@ -873,7 +873,7 @@ void withdraw(vector<stClientInfo> &vClients)
     system("clear");
     cout << "====================================================" << endl
          << "                  Withdraw screen \n"
-         << "====================================================\n\n"
+         << "====================================================\n"
          << "Please enter account number: ";
     cin >> accountNumber;
 
@@ -962,7 +962,7 @@ void findClient(vector<stClientInfo> &vClients)
     system("clear");
     cout << "====================================================" << endl
          << "                  Find client screen\n"
-         << "====================================================\n\n";
+         << "====================================================\n";
     string accountNumber = readAccountNumber("Enter account number to search: ");
     stClientInfo client;
     if (searchAccountByAccountNumberInVector(vClients, accountNumber, client))
@@ -975,7 +975,7 @@ void findUser(vector<stUserInfo> &vUsers)
     system("clear");
     cout << "====================================================" << endl
          << "                  Find client screen\n"
-         << "====================================================\n\n";
+         << "====================================================\n";
     string username = readUsername("Enter username to search: ");
     stUserInfo user;
     if (searchUserByusernameInVector(vUsers, username, user))
@@ -991,7 +991,7 @@ bool havePermission(enMainChoices choice)
         return true;
     }
 
-        switch (choice)
+    switch (choice)
     {
     case enMainChoices::Show:
     {
@@ -1230,7 +1230,7 @@ void login()
         system("clear");
         cout << "====================================================" << endl
              << "                  Login Screen\n"
-             << "====================================================\n\n";
+             << "====================================================\n";
 
         if (loginFailed)
         {

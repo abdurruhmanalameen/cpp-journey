@@ -1,10 +1,14 @@
 {
     "cSpell.words": [
+        "Abdurruhman",
+        "Alameen",
         "novemdecillion",
         "quattuordecillion",
         "quindecillion",
         "septendecillion",
         "undecillion",
         "vigintillion"
-    ]
+    ],
+    "C_Cpp.errorSquiggles": "enabled",
+    "C_Cpp.default.compilerPath": "/usr/bin/g++"
 }
