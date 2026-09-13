@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/core",
+                "${workspaceFolder}/libraries",
+                "${workspaceFolder}/screens",
+                "${workspaceFolder}/screens/client",
+                "${workspaceFolder}/screens/currency",
+                "${workspaceFolder}/screens/user"
+            ],
+            "compilerPath": "/usr/bin/g++",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}
