@@ -230,7 +230,7 @@ public:
 
         if (node1 == NULL)
         {
-            return NULL;
+            return 0;
         }
         else
         {

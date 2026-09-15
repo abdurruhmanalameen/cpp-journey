@@ -1,33 +1,25 @@
 #include <iostream>
-#include "clsDblLinkedList.h"
-
+#include "clsMyQueueLine.h"
 using namespace std;
 
 int main()
 {
 
-    clsDblLinkedLlist<int> myDblLinkedList;
+    clsMyQueueLine myQueue("A0", 10);
+    myQueue.issueTicket();
+    myQueue.issueTicket();
+    myQueue.issueTicket();
+    // myQueue.printInfo();
 
-    myDblLinkedList.insertAtBeginning(5);
-    myDblLinkedList.insertAtBeginning(4);
-    myDblLinkedList.insertAtBeginning(3);
-    myDblLinkedList.insertAtBeginning(2);
-    myDblLinkedList.insertAtBeginning(1);
+    // // myQueue.printInfo();
 
-    cout << "\nLinked List Content:\n";
-    myDblLinkedList.printListDetails();
+    // myQueue.printTicketsLineRtL();
+    // myQueue.printTicketsLineLtR();
 
-    // myDblLinkedList.reverse();
-    // myDblLinkedList.printListDetails();
+    myQueue.serveNextClient();
 
-    // clsDblLinkedLlist<int>::node *node1 = myDblLinkedList.getNode(2);
+    myQueue.printAllTickets();
+    myQueue.printInfo();
 
-    // cout << "node1 value is: " << node1->value << endl;
-
-    // cout << "Item of node1 is: " << myDblLinkedList.getItem(2) << endl;
-
-    // myDblLinkedList.updateItem(2, 500);
-
-    myDblLinkedList.insertAfter(2, 600);
-    myDblLinkedList.printListDetails();
+    return 0;
 }
